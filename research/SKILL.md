@@ -1,9 +1,9 @@
 ---
-name: browse-research
+name: research
 description: Evidence-backed web research with citations and confidence scores. Use when the user needs researched, verified answers backed by real sources — not LLM hallucinations.
 ---
 
-# BrowseAI Dev — Evidence-Backed Research
+# LastSearch — Evidence-Backed Research
 
 Use this skill when the user needs researched, cited answers backed by real web sources — not LLM hallucinations.
 
@@ -17,29 +17,29 @@ Use this skill when the user needs researched, cited answers backed by real web 
 
 ## Prerequisites
 
-Install BrowseAI Dev MCP server:
+Install LastSearch MCP server:
 
 ```json
 {
   "mcpServers": {
-    "browseai-dev": {
+    "lastsearch": {
       "command": "npx",
-      "args": ["-y", "browseai-dev"]
+      "args": ["-y", "lastsearch"]
     }
   }
 }
 ```
 
-Or set `BROWSE_API_KEY=bai_xxx` for full features (sessions, sharing, knowledge export).
+Or set `LASTSEARCH_API_KEY=ls_xxx` for full features (sessions, sharing, knowledge export).
 
 ## Workflow
 
 ### Step 1: Research the Question
 
-Use `browse_answer` to get a cited, evidence-backed answer:
+Use `answer` to get a cited, evidence-backed answer:
 
 ```
-browse_answer({ query: "How do mRNA vaccines work?", depth: "fast" })
+answer({ query: "How do mRNA vaccines work?", depth: "fast" })
 ```
 
 Use `depth: "thorough"` when:
@@ -82,7 +82,7 @@ When presenting results:
 User: "Is intermittent fasting effective for weight loss?"
 
 ```
-browse_answer({
+answer({
   query: "Is intermittent fasting effective for weight loss? What does the research say?",
   depth: "thorough"
 })
@@ -95,11 +95,11 @@ Present the answer with inline citations, highlight any contradictions between s
 - Frame queries as specific questions, not keywords ("What causes aurora borealis?" not "aurora borealis")
 - Include temporal context for time-sensitive topics ("latest AI regulations 2025")
 - For controversial topics, expect contradictions — surface them rather than hiding them
-- Use `browse_search` first if you just need URLs, not a full researched answer
+- Use `search` first if you just need URLs, not a full researched answer
 
 ## Links
 
-- [BrowseAI Dev](https://browseai.dev)
-- [Documentation](https://browseai.dev/docs)
-- [MCP Server](https://www.npmjs.com/package/browseai-dev)
-- [GitHub](https://github.com/BrowseAI-HQ/BrowseAI-Dev)
+- [LastSearch](https://lastsearch.ai)
+- [Documentation](https://lastsearch.ai/docs)
+- [MCP Server](https://www.npmjs.com/package/lastsearch)
+- [GitHub](https://github.com/LastSearch-HQ/LastSearch-Dev)

@@ -1,9 +1,9 @@
 ---
-name: browse-cite
+name: cite
 description: Generate properly formatted citations with source authority scores. Use when the user needs references, bibliographies, or sourced quotes for academic or professional writing.
 ---
 
-# BrowseAI Dev — Citations & Source References
+# LastSearch — Citations & Source References
 
 Use this skill when the user needs properly formatted citations, source references, or a bibliography backed by real web sources with authority scores.
 
@@ -17,29 +17,29 @@ Use this skill when the user needs properly formatted citations, source referenc
 
 ## Prerequisites
 
-Install BrowseAI Dev MCP server:
+Install LastSearch MCP server:
 
 ```json
 {
   "mcpServers": {
-    "browseai-dev": {
+    "lastsearch": {
       "command": "npx",
-      "args": ["-y", "browseai-dev"]
+      "args": ["-y", "lastsearch"]
     }
   }
 }
 ```
 
-Or set `BROWSE_API_KEY=bai_xxx` for full premium pipeline with domain authority scoring.
+Or set `LASTSEARCH_API_KEY=ls_xxx` for full premium pipeline with domain authority scoring.
 
 ## Workflow
 
 ### Step 1: Research with Thorough Depth
 
-Use `browse_answer` with `depth: "thorough"` to maximize source quality and claim verification:
+Use `answer` with `depth: "thorough"` to maximize source quality and claim verification:
 
 ```
-browse_answer({
+answer({
   query: "What are the cognitive benefits of bilingualism according to peer-reviewed research?",
   depth: "thorough"
 })
@@ -92,7 +92,7 @@ Structure the output for the user:
 User: "I need cited sources about the environmental impact of fast fashion for a research paper."
 
 ```
-browse_answer({
+answer({
   query: "What is the environmental impact of fast fashion? Include statistics on water usage, carbon emissions, and textile waste from authoritative sources.",
   depth: "thorough"
 })
@@ -119,12 +119,12 @@ Present as:
 - Prioritize sources with high authority scores (0.8+) for academic writing
 - The `quote` field contains verbatim text from the source — safe to use as direct quotes
 - For comprehensive bibliographies, run multiple queries on subtopics of the same research area
-- Pair with sessions (`browse_session_create`) when building citations across multiple research questions
+- Pair with sessions (`session_create`) when building citations across multiple research questions
 - Low authority scores (< 0.5) should be flagged — suggest the user find a more authoritative source
 
 ## Links
 
-- [BrowseAI Dev](https://browseai.dev)
-- [Documentation](https://browseai.dev/docs)
-- [MCP Server](https://www.npmjs.com/package/browseai-dev)
-- [GitHub](https://github.com/BrowseAI-HQ/BrowseAI-Dev)
+- [LastSearch](https://lastsearch.ai)
+- [Documentation](https://lastsearch.ai/docs)
+- [MCP Server](https://www.npmjs.com/package/lastsearch)
+- [GitHub](https://github.com/LastSearch-HQ/LastSearch-Dev)

@@ -1,9 +1,9 @@
 ---
-name: browse-compare-claims
+name: compare-claims
 description: Settle factual disputes by comparing evidence-backed answers against raw LLM output. Use when the user wants to know which of competing claims is correct.
 ---
 
-# BrowseAI Dev — Compare Claims & Settle Disputes
+# LastSearch — Compare Claims & Settle Disputes
 
 Use this skill when the user wants to settle a factual dispute, compare competing claims, or see where evidence-backed research differs from what an LLM would say unprompted.
 
@@ -16,14 +16,14 @@ Use this skill when the user wants to settle a factual dispute, compare competin
 
 ## Prerequisites
 
-Install BrowseAI Dev MCP server:
+Install LastSearch MCP server:
 
 ```json
 {
   "mcpServers": {
-    "browseai-dev": {
+    "lastsearch": {
       "command": "npx",
-      "args": ["-y", "browseai-dev"]
+      "args": ["-y", "lastsearch"]
     }
   }
 }
@@ -33,10 +33,10 @@ Install BrowseAI Dev MCP server:
 
 ### Step 1: Run the Comparison
 
-Use `browse_compare` to get both a raw LLM answer and an evidence-backed answer:
+Use `compare` to get both a raw LLM answer and an evidence-backed answer:
 
 ```
-browse_compare({
+compare({
   query: "Is coffee good or bad for heart health?"
 })
 ```
@@ -80,7 +80,7 @@ Based on the comparison:
 User: "People say you should stretch before exercise, but I heard that's wrong. Which is correct?"
 
 ```
-browse_compare({
+compare({
   query: "Should you stretch before exercise? Is static stretching before workouts helpful or harmful?"
 })
 ```
@@ -96,12 +96,12 @@ Present the comparison:
 - Frame the dispute clearly — include both sides in the query for best results
 - Works best for factual disputes, not opinion or preference questions
 - The raw LLM answer exposes common misconceptions — useful for educational content
-- For deeper investigation of the winning claim, follow up with `browse_answer` using `depth: "thorough"`
+- For deeper investigation of the winning claim, follow up with `answer` using `depth: "thorough"`
 - Low confidence on both sides means the topic is genuinely unsettled — say so
 
 ## Links
 
-- [BrowseAI Dev](https://browseai.dev)
-- [Documentation](https://browseai.dev/docs)
-- [MCP Server](https://www.npmjs.com/package/browseai-dev)
-- [GitHub](https://github.com/BrowseAI-HQ/BrowseAI-Dev)
+- [LastSearch](https://lastsearch.ai)
+- [Documentation](https://lastsearch.ai/docs)
+- [MCP Server](https://www.npmjs.com/package/lastsearch)
+- [GitHub](https://github.com/LastSearch-HQ/LastSearch-Dev)

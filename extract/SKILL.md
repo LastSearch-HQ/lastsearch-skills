@@ -1,9 +1,9 @@
 ---
-name: browse-extract
+name: extract
 description: Extract structured claims, quotes, and knowledge from any URL. Use when the user shares a link and wants key points, pricing, specs, or a focused summary.
 ---
 
-# BrowseAI Dev — Structured Data Extraction
+# LastSearch — Structured Data Extraction
 
 Use this skill when the user has a URL and wants structured claims, quotes, or knowledge extracted from it.
 
@@ -16,14 +16,14 @@ Use this skill when the user has a URL and wants structured claims, quotes, or k
 
 ## Prerequisites
 
-Install BrowseAI Dev MCP server:
+Install LastSearch MCP server:
 
 ```json
 {
   "mcpServers": {
-    "browseai-dev": {
+    "lastsearch": {
       "command": "npx",
-      "args": ["-y", "browseai-dev"]
+      "args": ["-y", "lastsearch"]
     }
   }
 }
@@ -33,10 +33,10 @@ Install BrowseAI Dev MCP server:
 
 ### Option A: Extract Structured Claims from a URL
 
-Use `browse_extract` when the user wants knowledge extracted from a specific page:
+Use `extract` when the user wants knowledge extracted from a specific page:
 
 ```
-browse_extract({
+extract({
   url: "https://example.com/article",
   query: "What are the pricing tiers?"
 })
@@ -52,10 +52,10 @@ The `query` parameter focuses extraction — use it to target specific informati
 
 ### Option B: Fetch Clean Text from a URL
 
-Use `browse_open` when the user just needs the page content as clean text:
+Use `open` when the user just needs the page content as clean text:
 
 ```
-browse_open({ url: "https://example.com/docs" })
+open({ url: "https://example.com/docs" })
 ```
 
 Returns:
@@ -79,7 +79,7 @@ When presenting extracted data:
 User: "What are the key arguments in this article? https://example.com/ai-regulation"
 
 ```
-browse_extract({
+extract({
   url: "https://example.com/ai-regulation",
   query: "What are the main arguments for and against AI regulation?"
 })
@@ -89,15 +89,15 @@ Present each claim with its supporting quote from the page.
 
 ## Tips
 
-- Always include a `query` parameter with `browse_extract` — it focuses the extraction and produces better results
-- Use `browse_open` for documentation pages where you need the full text
+- Always include a `query` parameter with `extract` — it focuses the extraction and produces better results
+- Use `open` for documentation pages where you need the full text
 - If the URL is behind a paywall or requires auth, the extraction may fail — let the user know
-- For extracting from multiple URLs, call `browse_extract` for each one separately
-- Combine with `browse_search` to first find relevant URLs, then extract from the best ones
+- For extracting from multiple URLs, call `extract` for each one separately
+- Combine with `search` to first find relevant URLs, then extract from the best ones
 
 ## Links
 
-- [BrowseAI Dev](https://browseai.dev)
-- [Documentation](https://browseai.dev/docs)
-- [MCP Server](https://www.npmjs.com/package/browseai-dev)
-- [GitHub](https://github.com/BrowseAI-HQ/BrowseAI-Dev)
+- [LastSearch](https://lastsearch.ai)
+- [Documentation](https://lastsearch.ai/docs)
+- [MCP Server](https://www.npmjs.com/package/lastsearch)
+- [GitHub](https://github.com/LastSearch-HQ/LastSearch-Dev)

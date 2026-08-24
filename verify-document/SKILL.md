@@ -1,9 +1,9 @@
 ---
-name: browse-verify-document
+name: verify-document
 description: Fact-check an entire document (AI-generated report, competitive analysis, news article, market summary) by extracting every atomic claim and verifying each against live web sources. Use when the user wants to audit the accuracy of a report rather than ask a single question.
 ---
 
-# BrowseAI Dev — Verify Document
+# LastSearch — Verify Document
 
 Audit the factual accuracy of any long-form document. Built for verifying outputs from OTHER AI agents (competitive analysis reports, market research, deep-research summaries, news articles, etc).
 
@@ -24,14 +24,14 @@ Audit the factual accuracy of any long-form document. Built for verifying output
 
 ## Prerequisites
 
-Install BrowseAI Dev MCP server:
+Install LastSearch MCP server:
 
 ```json
 {
   "mcpServers": {
-    "browseai-dev": {
+    "lastsearch": {
       "command": "npx",
-      "args": ["-y", "browseai-dev"]
+      "args": ["-y", "lastsearch"]
     }
   }
 }
@@ -39,10 +39,10 @@ Install BrowseAI Dev MCP server:
 
 ## Tool
 
-Use `browse_verify_document` (added in MCP v0.4+):
+Use `verify_document` (added in MCP v0.4+):
 
 ```
-browse_verify_document({
+verify_document({
   text: "<the full document text>",
   title: "Q4 2025 Competitive Analysis Report",  // optional
   depth: "fast",         // "fast" or "thorough" — thorough does multi-pass per claim
@@ -95,7 +95,7 @@ browse_verify_document({
 ## Workflow
 
 1. **Receive document** — paste from clipboard, file upload, or earlier conversation
-2. **Call `browse_verify_document`** with the text and an optional title
+2. **Call `verify_document`** with the text and an optional title
 3. **Present the report card**:
    - Lead with the **grade** (A-F) and verification rate ("This report is **78% verified** — Grade B")
    - List the **contradicted claims** prominently — these are the dangerous ones
@@ -108,7 +108,7 @@ browse_verify_document({
 User: "Sierra Ventures sent me this competitive analysis report. Can you verify how much of it is accurate?"
 
 ```
-browse_verify_document({
+verify_document({
   text: "<paste report>",
   title: "Sierra Ventures - AI Tooling Landscape Q4 2025",
   depth: "thorough",
@@ -150,7 +150,7 @@ Then present:
 
 ## Links
 
-- [BrowseAI Dev](https://browseai.dev)
-- [Documentation](https://browseai.dev/docs)
-- [MCP Server](https://www.npmjs.com/package/browseai-dev)
-- [GitHub](https://github.com/BrowseAI-HQ/BrowseAI-Dev)
+- [LastSearch](https://lastsearch.ai)
+- [Documentation](https://lastsearch.ai/docs)
+- [MCP Server](https://www.npmjs.com/package/lastsearch)
+- [GitHub](https://github.com/LastSearch-HQ/LastSearch-Dev)

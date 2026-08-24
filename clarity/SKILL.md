@@ -1,9 +1,9 @@
 ---
-name: browse-clarity
+name: clarity
 description: Anti-hallucination answer engine — three modes: prompt (enhanced prompts for your own LLM), answer (LLM with grounding), verified (LLM + web fusion). Use when accuracy matters.
 ---
 
-# BrowseAI Dev — Clarity Anti-Hallucination Answer Engine
+# LastSearch — Clarity Anti-Hallucination Answer Engine
 
 Use this skill when the user needs answers with reduced hallucinations. Clarity is an answer engine — it analyzes prompts, applies anti-hallucination techniques, and returns structured answers with claims, confidence, and risk analysis.
 
@@ -20,14 +20,14 @@ Use this skill when the user needs answers with reduced hallucinations. Clarity 
 
 ## Prerequisites
 
-Install BrowseAI Dev MCP server:
+Install LastSearch MCP server:
 
 ```json
 {
   "mcpServers": {
-    "browseai-dev": {
+    "lastsearch": {
       "command": "npx",
-      "args": ["-y", "browseai-dev"]
+      "args": ["-y", "lastsearch"]
     }
   }
 }
@@ -40,7 +40,7 @@ Install BrowseAI Dev MCP server:
 Returns only the enhanced system + user prompts with anti-hallucination techniques baked in. **No LLM call, no internet.** Use this when your own LLM (e.g. Claude) should answer using the enhanced prompts.
 
 ```
-browse_clarity({
+clarity({
   prompt: "What are the main causes of antibiotic resistance?",
   mode: "prompt"
 })
@@ -63,7 +63,7 @@ browse_clarity({
 Calls LLM with anti-hallucination instructions, returns a grounded answer with extracted claims. No internet required.
 
 ```
-browse_clarity({
+clarity({
   prompt: "What are the main causes of antibiotic resistance?",
   mode: "answer"
 })
@@ -82,10 +82,10 @@ browse_clarity({
 
 ### Mode 3: Verified with Web Fusion (`mode: "verified"`)
 
-Runs LLM answer + BrowseAI Dev's browse pipeline **in parallel**, then fuses the best of both.
+Runs LLM answer + LastSearch's browse pipeline **in parallel**, then fuses the best of both.
 
 ```
-browse_clarity({
+clarity({
   prompt: "What are the main causes of antibiotic resistance?",
   mode: "verified"
 })
@@ -123,7 +123,7 @@ Clarity applies these techniques automatically based on query analysis:
 ### Option A: Enhanced Prompts for Your Own LLM
 
 ```
-browse_clarity({ prompt: "Explain quantum entanglement", mode: "prompt" })
+clarity({ prompt: "Explain quantum entanglement", mode: "prompt" })
 ```
 
 Use the returned `systemPrompt` and `userPrompt` to call your own LLM with anti-hallucination grounding.
@@ -131,7 +131,7 @@ Use the returned `systemPrompt` and `userPrompt` to call your own LLM with anti-
 ### Option B: Quick Grounded Answer (No Internet)
 
 ```
-browse_clarity({ prompt: "Explain quantum entanglement", mode: "answer" })
+clarity({ prompt: "Explain quantum entanglement", mode: "answer" })
 ```
 
 Present the answer with techniques used and any identified risks.
@@ -139,7 +139,7 @@ Present the answer with techniques used and any identified risks.
 ### Option C: Verified Answer (Best Accuracy)
 
 ```
-browse_clarity({ prompt: "Explain quantum entanglement", mode: "verified" })
+clarity({ prompt: "Explain quantum entanglement", mode: "verified" })
 ```
 
 Present the fused answer. Highlight:
@@ -153,7 +153,7 @@ Present the fused answer. Highlight:
 Before presenting generated content to the user, run it through Clarity:
 
 ```
-browse_clarity({
+clarity({
   prompt: "Is it true that [your generated claim]? What does the evidence say?",
   mode: "verified"
 })
@@ -182,11 +182,11 @@ browse_clarity({
 - `llm`-origin claims without web backing may be hallucinated — caveat them
 - Low confidence doesn't mean wrong — it may mean limited web evidence available
 - For controversial topics, expect contradictions — surface them rather than hiding
-- Combine with `browse_answer` for a full research pipeline + Clarity cross-check
+- Combine with `answer` for a full research pipeline + Clarity cross-check
 
 ## Links
 
-- [BrowseAI Dev](https://browseai.dev)
-- [Documentation](https://browseai.dev/docs)
-- [MCP Server](https://www.npmjs.com/package/browseai-dev)
-- [GitHub](https://github.com/BrowseAI-HQ/BrowseAI-Dev)
+- [LastSearch](https://lastsearch.ai)
+- [Documentation](https://lastsearch.ai/docs)
+- [MCP Server](https://www.npmjs.com/package/lastsearch)
+- [GitHub](https://github.com/LastSearch-HQ/LastSearch-Dev)

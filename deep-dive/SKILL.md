@@ -1,9 +1,9 @@
 ---
-name: browse-deep-dive
+name: deep-dive
 description: Multi-step agentic deep research with reasoning chains and confidence progression. Use when the user needs a comprehensive, thorough investigation into a complex topic.
 ---
 
-# BrowseAI Dev — Deep Dive Research
+# LastSearch — Deep Dive Research
 
 Use this skill when the user needs a comprehensive, multi-step investigation into a complex topic — not a quick answer, but a thorough analysis with reasoning chains and progressive confidence building.
 
@@ -17,29 +17,29 @@ Use this skill when the user needs a comprehensive, multi-step investigation int
 
 ## Prerequisites
 
-Install BrowseAI Dev MCP server:
+Install LastSearch MCP server:
 
 ```json
 {
   "mcpServers": {
-    "browseai-dev": {
+    "lastsearch": {
       "command": "npx",
-      "args": ["-y", "browseai-dev"]
+      "args": ["-y", "lastsearch"]
     }
   }
 }
 ```
 
-Or set `BROWSE_API_KEY=bai_xxx` for full premium pipeline (NLI reranking, multi-provider search, counter-query verification).
+Or set `LASTSEARCH_API_KEY=ls_xxx` for full premium pipeline (NLI reranking, multi-provider search, counter-query verification).
 
 ## Workflow
 
 ### Step 1: Run Deep Research
 
-Use `browse_answer` with `depth: "deep"` for the full agentic research pipeline:
+Use `answer` with `depth: "deep"` for the full agentic research pipeline:
 
 ```
-browse_answer({
+answer({
   query: "What are the real-world performance implications of adopting microservices vs monoliths in 2025?",
   depth: "deep"
 })
@@ -79,7 +79,7 @@ Present a structured summary:
 User: "I need a comprehensive analysis of whether remote work actually hurts productivity."
 
 ```
-browse_answer({
+answer({
   query: "Does remote work reduce productivity compared to in-office work? What does the research evidence show across different industries and roles?",
   depth: "deep"
 })
@@ -99,11 +99,11 @@ Then present findings grouped by strength of evidence, with contradictions surfa
 - Deep mode costs 3x premium quota — use it for questions that genuinely need depth
 - Expect 15-30 seconds — set user expectations accordingly
 - If confidence remains below 50% after deep research, the topic likely has genuinely limited or conflicting evidence — say so
-- For follow-up questions on the same topic, consider using sessions (`browse_session_create`) to build on prior findings
+- For follow-up questions on the same topic, consider using sessions (`session_create`) to build on prior findings
 
 ## Links
 
-- [BrowseAI Dev](https://browseai.dev)
-- [Documentation](https://browseai.dev/docs)
-- [MCP Server](https://www.npmjs.com/package/browseai-dev)
-- [GitHub](https://github.com/BrowseAI-HQ/BrowseAI-Dev)
+- [LastSearch](https://lastsearch.ai)
+- [Documentation](https://lastsearch.ai/docs)
+- [MCP Server](https://www.npmjs.com/package/lastsearch)
+- [GitHub](https://github.com/LastSearch-HQ/LastSearch-Dev)

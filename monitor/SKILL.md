@@ -1,9 +1,9 @@
 ---
-name: browse-monitor
+name: monitor
 description: Track evolving topics over time using persistent research sessions. Use when the user wants to monitor news, product launches, policy changes, or any topic that changes.
 ---
 
-# BrowseAI Dev — Monitor & Track Changes
+# LastSearch — Monitor & Track Changes
 
 Use this skill when the user wants to monitor an evolving topic over time — tracking what's new, what changed, and what's still the same since last check.
 
@@ -16,23 +16,23 @@ Use this skill when the user wants to monitor an evolving topic over time — tr
 
 ## Prerequisites
 
-**Monitoring requires a BrowseAI Dev API key** for persistent sessions.
+**Monitoring requires a LastSearch API key** for persistent sessions.
 
 ```json
 {
   "mcpServers": {
-    "browseai-dev": {
+    "lastsearch": {
       "command": "npx",
-      "args": ["-y", "browseai-dev"],
+      "args": ["-y", "lastsearch"],
       "env": {
-        "BROWSE_API_KEY": "bai_xxx"
+        "LASTSEARCH_API_KEY": "ls_xxx"
       }
     }
   }
 }
 ```
 
-Get a free API key at [browseai.dev/dashboard](https://browseai.dev/dashboard).
+Get a free API key at [lastsearch.ai/dashboard](https://lastsearch.ai/dashboard).
 
 ## Workflow
 
@@ -41,7 +41,7 @@ Get a free API key at [browseai.dev/dashboard](https://browseai.dev/dashboard).
 Create a dedicated session for the topic to track:
 
 ```
-browse_session_create({ name: "openai-product-launches-2025" })
+session_create({ name: "openai-product-launches-2025" })
 ```
 
 Save the returned `session_id` — it persists across conversations.
@@ -51,7 +51,7 @@ Save the returned `session_id` — it persists across conversations.
 Establish the baseline — what is currently known about this topic:
 
 ```
-browse_session_ask({
+session_ask({
   session_id: "sess_abc123",
   query: "What are OpenAI's most recent product announcements and launches in 2025?",
   depth: "thorough"
@@ -65,7 +65,7 @@ Present this as the **baseline snapshot**. The session now stores all verified c
 In subsequent conversations (hours, days, or weeks later), query the same session:
 
 ```
-browse_session_ask({
+session_ask({
   session_id: "sess_abc123",
   query: "What are the latest OpenAI product announcements? Any new launches or updates?",
   depth: "fast"
@@ -76,10 +76,10 @@ The session automatically recalls prior knowledge and compares against new findi
 
 ### Step 4: Diff Against Prior Knowledge
 
-Use `browse_session_recall` to check what was already known:
+Use `session_recall` to check what was already known:
 
 ```
-browse_session_recall({
+session_recall({
   session_id: "sess_abc123",
   query: "What did we already know about OpenAI's 2025 launches?"
 })
@@ -107,19 +107,19 @@ User: "Track the EU AI Act enforcement for me."
 
 ```
 # Initial setup
-browse_session_create({ name: "eu-ai-act-enforcement" })
+session_create({ name: "eu-ai-act-enforcement" })
 
 # Baseline research
-browse_session_ask({
+session_ask({
   session_id: "...",
   query: "What is the current status of EU AI Act enforcement? What deadlines and requirements are active?",
   depth: "thorough"
 })
 
 # Later follow-up
-browse_session_recall({ session_id: "...", query: "EU AI Act deadlines and enforcement status" })
+session_recall({ session_id: "...", query: "EU AI Act deadlines and enforcement status" })
 
-browse_session_ask({
+session_ask({
   session_id: "...",
   query: "Any new EU AI Act enforcement actions, deadline changes, or compliance updates?",
   depth: "fast"
@@ -134,12 +134,12 @@ Present: "Since your last check: Two new compliance guidelines were published by
 - Use `thorough` depth for the initial baseline, then `fast` for follow-up checks to save quota
 - The `session_recall` tool is free (no web search) — use it to check existing knowledge before searching again
 - For high-frequency monitoring, keep queries focused on "what's new" to avoid re-retrieving known information
-- Share the session (`browse_session_share`) to let teammates follow the same topic
+- Share the session (`session_share`) to let teammates follow the same topic
 - Sessions persist indefinitely — you can monitor a topic over weeks or months
 
 ## Links
 
-- [BrowseAI Dev](https://browseai.dev)
-- [Documentation](https://browseai.dev/docs)
-- [MCP Server](https://www.npmjs.com/package/browseai-dev)
-- [GitHub](https://github.com/BrowseAI-HQ/BrowseAI-Dev)
+- [LastSearch](https://lastsearch.ai)
+- [Documentation](https://lastsearch.ai/docs)
+- [MCP Server](https://www.npmjs.com/package/lastsearch)
+- [GitHub](https://github.com/LastSearch-HQ/LastSearch-Dev)

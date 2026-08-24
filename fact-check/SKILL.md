@@ -1,9 +1,9 @@
 ---
-name: browse-fact-check
+name: fact-check
 description: Fact-check claims and detect hallucinations by comparing raw LLM answers against evidence-backed research. Use when the user wants to verify claims or check accuracy.
 ---
 
-# BrowseAI Dev — Fact Check & Hallucination Detection
+# LastSearch — Fact Check & Hallucination Detection
 
 Use this skill when the user wants to verify claims, detect hallucinations, or compare what an LLM says vs what evidence actually shows.
 
@@ -17,14 +17,14 @@ Use this skill when the user wants to verify claims, detect hallucinations, or c
 
 ## Prerequisites
 
-Install BrowseAI Dev MCP server:
+Install LastSearch MCP server:
 
 ```json
 {
   "mcpServers": {
-    "browseai-dev": {
+    "lastsearch": {
       "command": "npx",
-      "args": ["-y", "browseai-dev"]
+      "args": ["-y", "lastsearch"]
     }
   }
 }
@@ -34,10 +34,10 @@ Install BrowseAI Dev MCP server:
 
 ### Option A: Side-by-Side Comparison
 
-Use `browse_compare` to show raw LLM answer vs evidence-backed answer:
+Use `compare` to show raw LLM answer vs evidence-backed answer:
 
 ```
-browse_compare({ query: "Is nuclear energy the safest form of energy?" })
+compare({ query: "Is nuclear energy the safest form of energy?" })
 ```
 
 The response contains:
@@ -48,10 +48,10 @@ Present both side-by-side so the user can see the difference.
 
 ### Option B: Verify a Specific Claim
 
-Use `browse_answer` with a targeted verification query:
+Use `answer` with a targeted verification query:
 
 ```
-browse_answer({
+answer({
   query: "Is it true that [specific claim]? What does the evidence say?",
   depth: "thorough"
 })
@@ -69,7 +69,7 @@ When fact-checking for the user:
 
 1. State whether the claim is **supported**, **partially supported**, **contradicted**, or **unverifiable**
 2. Cite the specific sources that support or contradict
-3. If `browse_compare` was used, highlight the key differences between raw LLM and evidence-backed answers
+3. If `compare` was used, highlight the key differences between raw LLM and evidence-backed answers
 4. Note the confidence score and number of corroborating sources
 5. Surface any contradictions explicitly
 
@@ -78,7 +78,7 @@ When fact-checking for the user:
 User: "I read that drinking 8 glasses of water a day is medically necessary. Is that true?"
 
 ```
-browse_answer({
+answer({
   query: "Is the recommendation to drink 8 glasses of water per day supported by medical evidence?",
   depth: "thorough"
 })
@@ -91,12 +91,12 @@ If contradictions are found, present them:
 
 - Frame verification queries as specific questions, not statements
 - Use `depth: "thorough"` for fact-checking — it auto-retries with rephrased queries to find more evidence
-- For nuanced topics, `browse_compare` is the most effective tool — it shows the gap between hallucination-prone and evidence-backed answers
+- For nuanced topics, `compare` is the most effective tool — it shows the gap between hallucination-prone and evidence-backed answers
 - Low confidence (< 50%) doesn't mean the claim is false — it may mean there's limited evidence available
 
 ## Links
 
-- [BrowseAI Dev](https://browseai.dev)
-- [Documentation](https://browseai.dev/docs)
-- [MCP Server](https://www.npmjs.com/package/browseai-dev)
-- [GitHub](https://github.com/BrowseAI-HQ/BrowseAI-Dev)
+- [LastSearch](https://lastsearch.ai)
+- [Documentation](https://lastsearch.ai/docs)
+- [MCP Server](https://www.npmjs.com/package/lastsearch)
+- [GitHub](https://github.com/LastSearch-HQ/LastSearch-Dev)

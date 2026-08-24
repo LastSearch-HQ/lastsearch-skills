@@ -1,13 +1,13 @@
-# BrowseAI Dev Skills
+# LastSearch Skills
 
-Agent skills for [BrowseAI Dev](https://browseai.dev) — evidence-backed web research for AI coding agents.
+Agent skills for [LastSearch](https://lastsearch.ai) — evidence-backed web research for AI coding agents.
 
 Works with **Claude Code, Codex CLI, Gemini CLI, Cursor, Copilot, Windsurf**, and any tool that supports the [Agent Skills specification](https://agentskills.io/specification).
 
 ## Quick Install
 
 ```bash
-npx skills add BrowseAI-HQ/browseAIDev_Skills
+npx skills add LastSearch-HQ/lastsearch-skills
 ```
 
 Or manually copy any skill folder into your agent's skills directory (e.g., `~/.claude/skills/`).
@@ -16,67 +16,67 @@ Or manually copy any skill folder into your agent's skills directory (e.g., `~/.
 
 | Skill | What it does | Key tool |
 |-------|-------------|----------|
-| [browse-research](browse-research/) | Evidence-backed answers with citations and confidence scores | `browse_answer` |
-| [browse-fact-check](browse-fact-check/) | Compare raw LLM vs evidence-backed answers, verify claims | `browse_compare` |
-| [browse-extract](browse-extract/) | Extract structured claims and quotes from any URL | `browse_extract` |
-| [browse-sessions](browse-sessions/) | Multi-query research with persistent knowledge accumulation | `browse_session_*` |
-| [browse-deep-dive](browse-deep-dive/) | Multi-step agentic research with reasoning chains and gap analysis | `browse_answer` (deep) |
-| [browse-compare-claims](browse-compare-claims/) | Settle factual disputes — evidence-backed vs raw LLM side-by-side | `browse_compare` |
-| [browse-monitor](browse-monitor/) | Track evolving topics over time, diff against prior knowledge | `browse_session_*` |
-| [browse-cite](browse-cite/) | Generate properly formatted citations (APA/MLA) with authority scores | `browse_answer` (thorough) |
-| [browse-clarity](browse-clarity/) | Anti-hallucination answer engine — three modes: prompt, answer, verified | `browse_clarity` |
-| [browse-verify-document](browse-verify-document/) | Fact-check an entire document — extracts every claim, verifies each, returns A-F grade | `browse_verify_document` |
+| [research](research/) | Evidence-backed answers with citations and confidence scores | `answer` |
+| [fact-check](fact-check/) | Compare raw LLM vs evidence-backed answers, verify claims | `compare` |
+| [extract](extract/) | Extract structured claims and quotes from any URL | `extract` |
+| [sessions](sessions/) | Multi-query research with persistent knowledge accumulation | `session_*` |
+| [deep-dive](deep-dive/) | Multi-step agentic research with reasoning chains and gap analysis | `answer` (deep) |
+| [compare-claims](compare-claims/) | Settle factual disputes — evidence-backed vs raw LLM side-by-side | `compare` |
+| [monitor](monitor/) | Track evolving topics over time, diff against prior knowledge | `session_*` |
+| [cite](cite/) | Generate properly formatted citations (APA/MLA) with authority scores | `answer` (thorough) |
+| [clarity](clarity/) | Anti-hallucination answer engine — three modes: prompt, answer, verified | `clarity` |
+| [verify-document](verify-document/) | Fact-check an entire document — extracts every claim, verifies each, returns A-F grade | `verify_document` |
 
 ## Prerequisites
 
-These skills use BrowseAI Dev's MCP server. Add it to your MCP config:
+These skills use LastSearch's MCP server. Add it to your MCP config:
 
 ```json
 {
   "mcpServers": {
-    "browseai-dev": {
+    "lastsearch": {
       "command": "npx",
-      "args": ["-y", "browseai-dev"]
+      "args": ["-y", "lastsearch"]
     }
   }
 }
 ```
 
-For session features (persistent research memory, sharing, forking), set a BrowseAI Dev API key:
+For session features (persistent research memory, sharing, forking), set a LastSearch API key:
 
 ```json
 {
   "mcpServers": {
-    "browseai-dev": {
+    "lastsearch": {
       "command": "npx",
-      "args": ["-y", "browseai-dev"],
+      "args": ["-y", "lastsearch"],
       "env": {
-        "BROWSE_API_KEY": "bai_xxx"
+        "LASTSEARCH_API_KEY": "ls_xxx"
       }
     }
   }
 }
 ```
 
-Get a free API key at [browseai.dev/dashboard](https://browseai.dev/dashboard).
+Get a free API key at [lastsearch.ai/dashboard](https://lastsearch.ai/dashboard).
 
 ## How Skills Work
 
-Each skill is a `SKILL.md` file that teaches AI coding agents **when and how** to use BrowseAI Dev tools. Unlike the MCP server (which provides the tools), skills provide the **judgment layer** — they tell agents when to trigger, what parameters to use, and how to interpret results.
+Each skill is a `SKILL.md` file that teaches AI coding agents **when and how** to use LastSearch tools. Unlike the MCP server (which provides the tools), skills provide the **judgment layer** — they tell agents when to trigger, what parameters to use, and how to interpret results.
 
 ```
 User asks a question
      ↓
 Agent reads SKILL.md → knows when to trigger
      ↓
-Agent calls MCP tools (browse_answer, browse_compare, etc.)
+Agent calls MCP tools (answer, compare, etc.)
      ↓
 Agent interprets results using skill guidance
      ↓
 User gets cited, evidence-backed answer
 ```
 
-## What is BrowseAI Dev?
+## What is LastSearch?
 
 Open-source research infrastructure for AI agents. Every answer goes through a verification pipeline:
 
@@ -89,24 +89,24 @@ Open-source research infrastructure for AI agents. Every answer goes through a v
 7. **Domain Authority** — 10,000+ domains scored with Bayesian dynamic blending
 8. **Confidence Score** — 8-factor evidence-based score (not LLM self-assessed)
 
-Available as [MCP server](https://www.npmjs.com/package/browseai-dev), [REST API](https://browseai.dev/docs), and [Python SDK](https://pypi.org/project/browseaidev/).
+Available as [MCP server](https://www.npmjs.com/package/lastsearch), [REST API](https://lastsearch.ai/docs), and [Python SDK](https://pypi.org/project/lastsearch/).
 
 ## Contributing
 
 Want to add a new skill? PRs welcome!
 
-1. Create a new folder with a descriptive name (e.g., `browse-competitive-analysis/`)
+1. Create a new folder with a descriptive name (e.g., `competitive-analysis/`)
 2. Add a `SKILL.md` following the format of existing skills
 3. Include: when to trigger, prerequisites, step-by-step workflow, examples, tips
 4. Submit a PR to the `shreyas` branch
 
 ## Links
 
-- [BrowseAI Dev](https://browseai.dev)
-- [Documentation](https://browseai.dev/docs)
-- [Main Repo](https://github.com/BrowseAI-HQ/BrowseAI-Dev)
-- [MCP Server (npm)](https://www.npmjs.com/package/browseai-dev)
-- [Python SDK (PyPI)](https://pypi.org/project/browseaidev/)
+- [LastSearch](https://lastsearch.ai)
+- [Documentation](https://lastsearch.ai/docs)
+- [Main Repo](https://github.com/LastSearch-HQ/LastSearch-Dev)
+- [MCP Server (npm)](https://www.npmjs.com/package/lastsearch)
+- [Python SDK (PyPI)](https://pypi.org/project/lastsearch/)
 - [Discord](https://discord.gg/ubAuT4YQsT)
 
 ## License
