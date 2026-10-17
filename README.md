@@ -26,6 +26,7 @@ Or manually copy any skill folder into your agent's skills directory (e.g., `~/.
 | [cite](cite/) | Generate properly formatted citations (APA/MLA) with authority scores | `answer` (thorough) |
 | [clarity](clarity/) | Anti-hallucination answer engine — three modes: prompt, answer, verified | `clarity` |
 | [verify-document](verify-document/) | Fact-check an entire document — extracts every claim, verifies each, returns A-F grade | `verify_document` |
+| [verify](verify/) | "Is this true?" — verify any claim, URL, file, or pasted AI answer; every claim judged with the exact evidence span shown (`npx verify-anything`) | `verify` |
 
 ## Prerequisites
 
